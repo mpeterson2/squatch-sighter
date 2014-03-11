@@ -1,0 +1,1 @@
+web: bundle exec ruby squatch-sighter.rb -p $PORT
