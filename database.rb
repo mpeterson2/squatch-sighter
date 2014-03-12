@@ -1,28 +1,15 @@
 require "sequel"
 
-class Database
-	attr_accessor :DB
+configure do
+	DB = Sequel.connect(ENV["DATABASE_URL"] || "sqlite://database/database.db")
 
-	def DB=(database)
-		@DB = database
+	DB.create_table? :sightings do
+		primary_key :id
+		String :name
+		Float :longitude
+		Float :latitude
 	end
 
-	def sightings
-		@DB[:sightings]
+	class Sighting < Sequel::Model
 	end
-
-	def initialize() 
-		self.DB = Sequel.connect("sqlite://database/database.db")
-		self.createTables
-	end
-
-	def createTables
-		@DB.create_table? :sightings do
-			primary_key :id
-			String :name
-			Float :longitude
-			Float :latitude
-		end
-	end
-
 end
