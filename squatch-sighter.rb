@@ -2,8 +2,8 @@
 
 require "sinatra"
 require "json"
-require_relative "database.rb"
-require_relative "config.rb"
+require_relative "./database.rb"
+require_relative "./config.rb"
 
 # Main index page.
 get "/" do
