@@ -3,10 +3,7 @@
 require "sinatra"
 require "json"
 require_relative "database.rb"
-
-# Settings for Sinatra.
-set :public_folder, 'public/squatch_sighter/web'
-mime_type :dart, 'application/dart'
+require_relative "config.rb"
 
 # Main index page.
 get "/" do
