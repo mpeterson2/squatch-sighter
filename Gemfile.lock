@@ -15,5 +15,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  sequel
-  sinatra
+  sequel (= 4.8.0)
+  sinatra (= 1.4.4)
