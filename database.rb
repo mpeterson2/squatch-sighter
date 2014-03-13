@@ -18,3 +18,8 @@ configure do
 	class Sighting < Sequel::Model
 	end
 end
+
+=begin
+Comments
+Users
+=end
