@@ -5,7 +5,7 @@ require_relative "./database.rb"
 class SquatchSighter < Sinatra::Base
 
 	configure do
-		SquatchSighter.set :public_folder, 'public/squatch_sighter/build'
+		SquatchSighter.set :public_folder, 'public/squatch_sighter/build/web'
 	end
 
 	# Main index page.
