@@ -1,7 +1,7 @@
 require "sequel"
 
 configure do
-	DB = Sequel.connect(ENV["DATABASE_URL"] || "sqlite://database/database.db")
+	DB = Sequel.connect(ENV["HEROKU_POSTGRESQL_OLIVE_URL"] || "sqlite://database/database.db")
 
 	DB.create_table? :sightings do
 		primary_key :id
