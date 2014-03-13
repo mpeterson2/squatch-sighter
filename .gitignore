@@ -1,4 +1,5 @@
 packages
+!public/squatch_sighter/build/web/packages
 pubspec.lock
 
 database/
