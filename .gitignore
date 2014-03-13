@@ -1,5 +1,6 @@
 database/
 public/squatch_sighter/build
 packages
+pubspec.lock
 old_dart
 old_js
