@@ -14,9 +14,14 @@ end
 post "/sighting/new" do
 	data = JSON.parse(request.body.read)
 	id = Sighting.insert(
-		:name => 'name',
+		:title => data["title"],
+		:description => data["description"],
+		:name => data["name"],
+		:contact_info => data["contact_info"],
 		:latitude => data["lat"],
-		:longitude => data["lng"]
+		:longitude => data["lng"],
+		:date => Date.parse(data["date"]),
+		:record_date => DateTime.now
 		)
 	id.to_s
 end

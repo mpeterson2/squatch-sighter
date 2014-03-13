@@ -13,10 +13,11 @@ class SquatchMap {
   
   SquatchMap(Node mapElement) {
     MapOptions mOptions = new MapOptions()
+    ..scaleControl = true
     ..mapTypeId = MapTypeId.HYBRID;
     
     map = new GMap(mapElement, mOptions);
-    _infoWindow = new InfoWindow();
+    _infoWindow = new InfoWindow(new InfoWindowOptions());
     
     gotoLocation();
     _setupEvents();
@@ -24,17 +25,20 @@ class SquatchMap {
   
   void _setupEvents() {
     map.onClick.listen((MouseEvent e) {
+      _infoWindow.close();
       _infoWindow
           ..content = IWContent.newSighting(e.latLng)
           ..position = e.latLng
           ..open(map);
     });
     
-    _infoWindow.onDomready.listen((MouseEvent e) {
-      ButtonElement createBtn = querySelector("#createBtn");
-      if(createBtn != null) {
-        createBtn.onClick.listen((_) {
-          shareSighting(_infoWindow.position);
+    _infoWindow.onDomready.listen((MouseEvent e) {      
+      ButtonElement shareBtn = querySelector("#shareBtn");
+      if(shareBtn != null) {
+        shareBtn.onClick.listen((Event e) {
+          e.preventDefault();
+          e.stopPropagation();
+          _shareSighting();
         });
       }
     });
@@ -47,27 +51,32 @@ class SquatchMap {
          ..zoom = 10;
     })
     .catchError((e) {
-      print("Could not get location");
       map..center = NORTH_AMERICA
          ..zoom = 4;
     });
   }
   
-  void shareSighting(LatLng pos) {
+  void _shareSighting() {
     Map data = new Map();
-    data["lat"] = pos.lat;
-    data["lng"] = pos.lng;
+    data["title"] = IWContent.title;
+    data["description"] = IWContent.description;
+    data["name"] = IWContent.name;
+    data["contact_info"] = IWContent.contactInfo;
+    data["date"] = IWContent.date.toUtc().toString();
+    data["lat"] = IWContent.latitude;
+    data["lng"] = IWContent.longitude;
 
     HttpRequest.request("/sighting/new", method: "post", sendData: JSON.encode(data))
     .then((HttpRequest request) {
       showSightingId(int.parse(request.responseText));
     });
+    
+    _infoWindow.close();
   }
   
   void showSightingId(int id) {
     HttpRequest.request("/sighting/$id")
     .then((HttpRequest request) {
-      print(request.responseText);
       showSighting(new SightingMarker.fromJson(request.responseText));
     });
   }
