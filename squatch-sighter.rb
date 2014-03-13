@@ -3,6 +3,11 @@ require "json"
 require_relative "./database.rb"
 
 class SquatchSighter < Sinatra::Base
+
+	configure do
+		SquatchSighter.set :public_folder, 'public/squatch_sighter/build/web'
+	end
+
 	# Main index page.
 	get "/" do
 		redirect "/map.html"
@@ -35,5 +40,12 @@ class SquatchSighter < Sinatra::Base
 		content_type :json
 		id = params[:id].to_i
 		Sighting.naked[id].to_json
+	end
+end
+
+class SquatchSighterDart < SquatchSighter
+	configure do
+		SquatchSighterDart.set :public_folder, 'public/squatch_sighter/web'
+		SquatchSighterDart.mime_type :dart, "application/dart"
 	end
 end
