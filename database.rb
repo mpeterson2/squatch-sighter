@@ -15,11 +15,22 @@ configure do
 		Date :record_date
 	end
 
+	DB.create_table? :users do
+		primary_key :id
+		String :f_name
+		String :l_name
+		String :user_name, :unique => true
+		String :email, :unique => true
+	end
+
 	class Sighting < Sequel::Model
+	end
+
+	class User < Sequel::Model
 	end
 end
 
 =begin
-Comments
 Users
+Comments
 =end
