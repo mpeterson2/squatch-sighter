@@ -1,3 +1,5 @@
 database/
 public/squatch_sighter/build
 packages
+old_dart
+old_js
