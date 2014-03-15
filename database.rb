@@ -1,8 +1,8 @@
 require "sequel"
 require "json"
 
-#DB = Sequel.connect(ENV["HEROKU_POSTGRESQL_OLIVE_URL"] || "sqlite://database/database.db")
-DB = Sequel.sqlite
+DB = Sequel.connect(ENV["HEROKU_POSTGRESQL_OLIVE_URL"] || "sqlite://database/database.db")
+#DB = Sequel.sqlite
 
 DB.create_table? :sightings do 
     primary_key :id
