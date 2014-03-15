@@ -57,16 +57,13 @@ class SquatchMap {
   }
   
   void _shareSighting() {
-    Map data = new Map();
-    data["title"] = IWContent.title;
-    data["description"] = IWContent.description;
-    data["name"] = IWContent.name;
-    data["contact_info"] = IWContent.contactInfo;
-    data["date"] = IWContent.date.toUtc().toString();
-    data["lat"] = IWContent.latitude;
-    data["lng"] = IWContent.longitude;
+    
+    FormData form = new FormData(IWContent.form);
+    for(File f in IWContent.media) {
+      form.appendBlob("media-${f.name}", f, f.name);
+    }
 
-    HttpRequest.request("/sighting/new", method: "post", sendData: JSON.encode(data))
+    HttpRequest.request("/sighting/new", method: "post", sendData: form)
     .then((HttpRequest request) {
       showSightingId(int.parse(request.responseText));
     });

@@ -6,6 +6,10 @@ import "sighting-marker.dart";
 
 class IWContent {
   
+  static FormElement get form {
+    return querySelector("#new-sighting");
+  }
+  
   static String get title {
     if(isNew) {
       TextInputElement t = querySelector("#title");
@@ -60,6 +64,15 @@ class IWContent {
     return querySelector("#lng").text;
   }
   
+  static List<File> get media {
+    if(isNew) {
+      InputElement t = querySelector("#media");
+      return t.files;
+    }
+    
+    return null;
+  }
+  
   static DateTime get date {
     if(isNew) {
       DateInputElement t = querySelector("#date");
@@ -87,37 +100,42 @@ class IWContent {
   <table>
     <tr>
       <td><lable style="font-weight: bold;">Title: </lable></td>
-      <td><input id="title" type="text" placeholder="Title" /></td>
+      <td><input id="title" name="title" type="text" placeholder="Title" /></td>
     </tr>
     
     <tr>
       <td><lable style="font-weight: bold;">Description: </lable></td>
-      <td><textarea id="description" type="text" placeholder="Description"></textarea></td>
+      <td><textarea id="description" name="description" type="text" placeholder="Description"></textarea></td>
     </tr>
     
     <tr>
       <td><lable style="font-weight: bold;">Name/Alias: </lable></td>
-      <td><input id="name" type="text" placeholder="Name/Alias" /></td>
+      <td><input id="name" name="name" type="text" placeholder="Name/Alias" /></td>
     </tr>
     
     <tr>
       <td><lable style="font-weight: bold;">Contact Info: </lable></td>
-      <td><input id="contactInfo" type="text" placeholder="Contact Info" /></td>
+      <td><input id="contactInfo" name="contact_info" type="text" placeholder="Contact Info" /></td>
     </tr>
 
     <tr>
       <td><lable style="font-weight: bold;">Date Sighted: </lable></td>
-      <td><input id="date" type="date" /></td>
+      <td><input id="date" name="date" type="date" /></td>
     </tr>
     
     <tr>
       <td><lable style="font-weight: bold;">Latitude: </lable></td>
-      <td><input id="lat" type="text" value="${pos.lat}" placeholder="latitude" /></td>
+      <td><input id="lat" name="lat" type="text" value="${pos.lat}" placeholder="latitude" /></td>
     </tr>
 
     <tr>
       <td><lable style="font-weight: bold;">Longitude: </lable></td>
-      <td><input id="lng" type="text" value="${pos.lng}" placeholder="longitude" /></td>
+      <td><input id="lng" name="lng" type="text" value="${pos.lng}" placeholder="longitude" /></td>
+    </tr>
+
+    <tr>
+      <td><lable style="font-weight: bold;">Media: </lable></td>
+      <td><input id="media" type="file" accept="image/*" multiple/></td>
     </tr>
     
     <tr>

@@ -15,18 +15,33 @@ class SquatchSighter < Sinatra::Base
 
 	# Add a new Sighting.
 	post "/sighting/new" do
-		data = JSON.parse(request.body.read)
-		id = Sighting.insert(
-			:title => data["title"],
-			:description => data["description"],
-			:name => data["name"],
-			:contact_info => data["contact_info"],
-			:latitude => data["lat"],
-			:longitude => data["lng"],
-			:date => Date.parse(data["date"]),
-			:record_date => DateTime.now
+
+		sighting = Sighting.create(
+			:title => params["title"],
+			:description => params["description"],
+			:name => params["name"],
+			:contact_info => params["contact_info"],
+			:date => DateTime.now, #Date.parse(params["date"]),
+			:record_date => DateTime.now,
+			:latitude => params["lat"],
+			:longitude => params["lng"]
 			)
-		id.to_s
+
+		params.keys.each do |key|
+			if key.start_with?("media-")
+				name = params[key][:filename]
+				file_type = name[name.rindex("."), name.length]
+				puts file_type
+				
+				m_id = Image.insert(
+					:file_type => file_type
+					)
+
+				sighting.add_image(Image[m_id])
+			end
+		end
+
+		sighting[:id].to_s
 	end
 
 	# Grab all of the sightings.
