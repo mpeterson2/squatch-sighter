@@ -3,6 +3,7 @@ library SightingsMarker;
 import "dart:convert";
 import "package:google_maps/google_maps.dart";
 import "info-window-content.dart";
+import "squatch-map.dart";
 
 class SightingMarker extends Marker {
   InfoWindow _infoWindow;
@@ -36,9 +37,16 @@ class SightingMarker extends Marker {
     return new SightingMarker.fromMap(map);
   }
   
-  void show(GMap map, InfoWindow infoWindow) {
-    this.map = map;
+  String get shortDesc {
+    if(description.length > 500)
+      return description.substring(0, 500) + "...";
+    return description;
+  }
+  
+  void show(SquatchMap sMap, InfoWindow infoWindow) {
+    map = sMap.map;
     onClick.listen((e) {
+      sMap.clickedMarker = this;
       infoWindow
         ..content = IWContent.marker(this)
         ..open(map, this);

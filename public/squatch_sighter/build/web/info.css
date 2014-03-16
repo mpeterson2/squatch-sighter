@@ -1,0 +1,63 @@
+#title {
+	text-align: center;
+}
+
+.label {
+	padding-right: 10px;
+	font-weight: bold;
+}
+
+body {
+	background-image: url("info-bg.jpg");
+	background-repeat: repeat-y;
+	background-position: center;
+	margin: 0;
+}
+
+#content {
+	background-color: white;
+	margin: auto;
+	top:0;
+	width: 900px;
+	min-height: 100%;
+}
+
+#innerContent {
+	padding: 25px;
+}
+
+#images {
+	text-align: center;
+}
+
+.img {
+	max-width: 800px;
+}
+
+.comment {
+	border: 1px solid gray;
+	padding: 15px;
+}
+
+.commenter {
+	margin: 0;
+}
+
+#addComment {
+	margin-top: 15px;
+	border: 1px solid gray;
+	text-align: center;
+}
+
+#addCommentForm {
+	display: inline-block;
+	border: 1px solid gray;
+	margin: 15px;
+	padding: 15px;
+}
+
+#commentBox {
+	width: 500px;
+	max-width: 500px;
+	height: 100px;
+}

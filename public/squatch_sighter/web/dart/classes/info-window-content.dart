@@ -90,9 +90,21 @@ class IWContent {
     return DateTime.parse(querySelector("#recordDate").text);
   }
   
+  static ButtonElement get shareBtn {
+    if(isNew)
+      return querySelector("#shareBtn");
+    return null;
+  }
+  
+  static ButtonElement get moreInfoBtn {
+    if(isNew)
+      return null;
+    return querySelector("#moreInfoBtn");
+  }
+  
   static bool get isNew {
     return querySelector("#shareBtn") != null;
-  }
+  }  
   
   static String newSighting(LatLng pos) {
     return """
@@ -185,7 +197,11 @@ class IWContent {
   </tr>
 </table>
 <p>
-${sm.description.replaceAll("\n", "</p><p>")}
+${sm.shortDesc.replaceAll("\n", "</p><p>")}
+</p>
+<div style="text-align: center;">
+  <button id="moreInfoBtn">More Info</button>
+</div>
 """;
   }
 }

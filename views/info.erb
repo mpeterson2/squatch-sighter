@@ -1,0 +1,101 @@
+<html>
+<head>
+	<title>Squatch Sighter</title>
+    <link rel="stylesheet" href="/info.css" type="text/css">
+	<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="/info.js"></script>
+</head>
+<body>
+	<div id="content">
+		<div id="innerContent">
+			<h1 id="title"><%= @sighting.title %></h1>
+
+			<table id="metaTable">
+				<tr>
+					<td class="label">Name/Alias:</td>
+					<td><%= @sighting.name %></td>
+				</tr>
+
+				<tr>
+					<td class="label">Contact Info:</td>
+					<td><%= @sighting.contact_info %></td>
+				</tr>
+
+				<tr>
+					<td class="label">Date Sighted:</td>
+					<td><%= @sighting.date %></td>
+				</tr>
+
+				<tr>
+					<td class="label">Date Recorded:</td>
+					<td><%= @sighting.record_date %></td>
+				</tr>
+
+				<tr>
+					<td class="label">Latitude:</td>
+					<td><%= @sighting.latitude %></td>
+				</tr>
+
+				<tr>
+					<td class="label">Longitude:</td>
+					<td><%= @sighting.longitude %></td>
+				</tr>
+			</table>
+			
+			<br>
+			
+			<div id="description">
+				<p>
+					<%= @sighting.description.gsub!("\n", "</p><p>") %>
+				</p>
+			</div>
+
+			<br>
+
+			<h3>Images: </h3>
+			<div id="images">
+				<% @images.each do |img| %>
+					<img class="img" src="<%= img %>" />
+				<% end %>
+			</div>
+
+			<div id="comments">
+				<h3>Comments: </h3>
+				<% @sighting.comments_dataset.each do |com| %>
+					<div class="comment">
+						<h4 class="commenter"><%= com.name %>:</h4>
+						<br>
+						<p>
+							<%= com.text.gsub!("\n", "</p><p>") %>
+						</p>
+					</div>
+				<% end %>
+			</div>
+
+			<div id="addComment">
+				<form id="addCommentForm" method="post">
+					<table>
+						<tr>
+							<td><label>Name/Alias:</label></td>
+							<td><input type="text" name="name" placeholder="Name/Alias"/></td>
+						</tr>
+
+						<tr>
+							<td><label>Comment:</label></td>
+							<td><textarea id="commentBox" name="text" placeholder="Type your comment here..."></textarea></td>
+						</tr>
+
+						<tr>
+							<td></td>
+							<td><input type="button" value="Post Comment" onclick="postComment()" /></td>
+						</tr>
+
+					</table>
+				</form>
+			</div>
+
+		</div>
+	</div>
+
+</body>
+</html>

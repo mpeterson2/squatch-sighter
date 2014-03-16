@@ -10,6 +10,7 @@ class SquatchMap {
   final LatLng NORTH_AMERICA = new LatLng(40, -95);
   GMap map;
   InfoWindow _infoWindow;
+  SightingMarker clickedMarker;
   
   SquatchMap(Node mapElement) {
     MapOptions mOptions = new MapOptions()
@@ -33,12 +34,19 @@ class SquatchMap {
     });
     
     _infoWindow.onDomready.listen((MouseEvent e) {      
-      ButtonElement shareBtn = querySelector("#shareBtn");
+      ButtonElement shareBtn = IWContent.shareBtn;
       if(shareBtn != null) {
         shareBtn.onClick.listen((Event e) {
           e.preventDefault();
           e.stopPropagation();
           _shareSighting();
+        });
+      }
+      
+      ButtonElement moreInfoBtn = IWContent.moreInfoBtn;
+      if(moreInfoBtn != null) {
+        moreInfoBtn.onClick.listen((e) {
+          _moreInfo();
         });
       }
     });
@@ -71,6 +79,11 @@ class SquatchMap {
     _infoWindow.close();
   }
   
+  void _moreInfo() {
+    int id = clickedMarker.id;
+    window.location.assign("/sighting/info/$id");
+  }
+  
   void showSightingId(int id) {
     HttpRequest.request("/sighting/$id")
     .then((HttpRequest request) {
@@ -79,6 +92,6 @@ class SquatchMap {
   }
   
   void showSighting(SightingMarker marker) {
-    marker.show(map, _infoWindow);
+    marker.show(this, _infoWindow);
   }
 }
