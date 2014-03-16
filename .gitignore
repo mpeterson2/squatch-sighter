@@ -2,7 +2,7 @@ packages
 !public/squatch_sighter/build/web/packages
 pubspec.lock
 
-database/
+database.db
 
 old_dart
 old_js
