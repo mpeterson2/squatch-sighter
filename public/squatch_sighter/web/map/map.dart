@@ -5,7 +5,16 @@ import "lib/sighting-marker.dart";
 
 
 void main() {
-  SquatchMap map = new SquatchMap(querySelector("#map-canvas"));
+  Map<String, String> args = getArgs();
+  SquatchMap map;
+  try {
+    double lat = double.parse(args["lat"]);
+    double lng = double.parse(args["lng"]);
+    double zoom = double.parse(args["zoom"]);
+    map = new SquatchMap(querySelector("#map-canvas"), lat, lng, zoom);
+  } catch(e) {
+    map = new SquatchMap(querySelector("#map-canvas"));
+  }  
   
   // Grab and show all previous sightings.
   HttpRequest.request("/sighting/all")
@@ -15,4 +24,15 @@ void main() {
       map.showSighting(new SightingMarker.fromMap(sighting));
     }
   });
+}
+
+Map<String, String> getArgs() {
+  Map<String, String> map = new Map();
+  String queryString = window.location.search.replaceFirst("?", "");
+  for(String pair in queryString.split("&")) {
+    List<String> kv = pair.split("=");
+    map[kv[0]] = kv[1];
+  }
+  
+  return map;
 }

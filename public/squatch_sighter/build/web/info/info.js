@@ -1,3 +1,8 @@
+$(document).ready(function() {
+	// TODO when converting to javascript, make this work correctly.
+	$("#backLink").attr("href", "/?lat=45&lng=90&zoom=4")
+})
+
 function postComment() {
 	var form = $("#addCommentForm")
 	var path = window.location.pathname

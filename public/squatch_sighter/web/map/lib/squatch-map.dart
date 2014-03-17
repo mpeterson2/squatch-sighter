@@ -11,7 +11,7 @@ class SquatchMap {
   InfoWindow _infoWindow;
   SightingMarker clickedMarker;
   
-  SquatchMap(Node mapElement) {
+  SquatchMap(Node mapElement, [double lat, double lng, double zoom]) {
     MapOptions mOptions = new MapOptions()
     ..scaleControl = true
     ..mapTypeId = MapTypeId.HYBRID;
@@ -19,7 +19,12 @@ class SquatchMap {
     map = new GMap(mapElement, mOptions);
     _infoWindow = new InfoWindow(new InfoWindowOptions());
     
-    gotoLocation();
+    if(lat != null && lng != null && zoom != null) {
+      map..center = new LatLng(lat, lng)
+         ..zoom = zoom;
+    }
+    else
+      gotoLocation();
     _setupEvents();
   }
   
@@ -80,7 +85,7 @@ class SquatchMap {
   
   void _moreInfo() {
     int id = clickedMarker.id;
-    window.location.assign("/sighting/info/$id");
+    window.location.assign("/sighting/info/$id?lat=${map.center.lat}&lng=${map.center.lng}&zoom=${map.zoom}");
   }
   
   void showSightingId(int id) {

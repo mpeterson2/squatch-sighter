@@ -73,7 +73,6 @@ class SquatchSighter < Sinatra::Base
 
 	post "/sighting/info/comment/:id" do
 		content_type :json
-		puts "_________________________________________________"
 		id = params[:id]
 		newCom = Comment.create(
 			:name => params[:name],
@@ -81,7 +80,6 @@ class SquatchSighter < Sinatra::Base
 			)
 
 		Sighting[id].add_comment(newCom)
-		puts "_________________________________________________"
 		newCom.to_json
 	end
 
