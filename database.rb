@@ -47,14 +47,3 @@ class Comment < Sequel::Model
     many_to_one :sighting
     plugin :json_serializer
 end
-
-puts "__________________________________"
-puts Sighting[1].name
-Sighting[1].update(:description => "I was filming two of my friends, Dave and Joe, fishing when a sasquatch snuck up on us. The next thing I knew, the big foot had ripped Dave's heart out and fed it to him! Next he just ripped his arm off. Then he threw Dave's arm at Joe, with such a great force that it knocked him into the water, and killed him!
-
-I am just amazed he left me alone.
-
-I was also able to film the whole event, and even uploaded it to youtube - https://www.youtube.com/watch?v=XleygjgB-uA")
-puts "__________________________________"
-Sighting[1].description
-puts "__________________________________"
