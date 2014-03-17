@@ -16,7 +16,7 @@ class DropboxApi
 	end
 
 	def upload(name, file)
-		@client.put_file(@@FOLDER_NAME + name, file)
+		@client.put_file(@@FOLDER_NAME + name, file, true)
 	end
 
 	def download(name)
