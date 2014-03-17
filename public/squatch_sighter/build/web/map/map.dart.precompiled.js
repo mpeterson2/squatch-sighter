@@ -250,14 +250,14 @@ var $$={}
                     globalObject]);
   }
 })
-([["InfoWindowContent","file:///home/michael/Code/squatch-sighter/public/squatch_sighter/web/dart/classes/info-window-content.dart",,M,{
+([["InfoWindowContent","file:///home/michael/Code/squatch-sighter/public/squatch_sighter/web/map/lib/info-window-content.dart",,M,{
 "^":"",
 xN:function(){if(document.querySelector("#shareBtn")!=null)return J.co(document.querySelector("#media"))
 return},
 Ea:function(){if(document.querySelector("#shareBtn")!=null)return document.querySelector("#shareBtn")
 return},
 J6:function(){if(document.querySelector("#shareBtn")!=null)return
-return document.querySelector("#moreInfoBtn")}}],["SightingsMarker","file:///home/michael/Code/squatch-sighter/public/squatch_sighter/web/dart/classes/sighting-marker.dart",,L,{
+return document.querySelector("#moreInfoBtn")}}],["SightingsMarker","file:///home/michael/Code/squatch-sighter/public/squatch_sighter/web/map/lib/sighting-marker.dart",,L,{
 "^":"",
 o7:{
 "^":"ji;mf,jO,mk,uh,oc,kK,l8,mM,fj,U3,oz,pF,PX,My,va,wt,RL,Cb,Lo,Fm,LX,Yr,nP,hn,pv,Kp,aG,dX,TZ,pz,LO",
@@ -309,7 +309,7 @@ v=v+H.d((t==null?null:new Z.IP(t)).LO.nQ("lat"))+"</td>\n  </tr>\n  \n  <tr>\n  
 u=u.nQ("getPosition")
 y.sjb(0,v+H.d((u==null?null:new Z.IP(u)).LO.nQ("lng"))+"</td>\n  </tr>\n</table>\n<p>\n"+J.JA(z.gD1(),"\n","</p><p>")+"\n</p>\n<div style=\"text-align: center;\">\n  <button id=\"moreInfoBtn\">More Info</button>\n</div>\n")
 y.Po(0,z.gIr(z),z)},"call$1",null,2,0,null,11,[],"call"],
-$isEH:true}}],["SquatchMap","file:///home/michael/Code/squatch-sighter/public/squatch_sighter/web/dart/classes/squatch-map.dart",,B,{
+$isEH:true}}],["SquatchMap","file:///home/michael/Code/squatch-sighter/public/squatch_sighter/web/map/lib/squatch-map.dart",,B,{
 "^":"",
 WP:{
 "^":"a;AP,Ir,dt,uC",
@@ -1692,7 +1692,8 @@ FD:{
 "^":"a;mr,Rn,XZ,Rv,Ee,Mo,AM,NE",
 XL:[function(a){return init.metadata[this.Rn[2*a+this.Ee+3]]},"call$1","gWh",2,0,null,207,[]],
 BX:[function(a,b){var z=this.Rv
-if(J.u6(b,z))return
+if(typeof b!=="number")return b.C()
+if(b<z)return
 return this.Rn[3+b-z]},"call$1","gkv",2,0,null,207,[]],
 Fk:[function(a){var z=this.Rv
 if(a<z)return
@@ -1972,10 +1973,9 @@ return z}}}}],["dart._internal","dart:_internal",,H,{
 "^":"",
 bQ:[function(a,b){var z
 for(z=new H.a7(a,a.length,0,null);z.G();)b.call$1(z.lo)},"call$2","Mn",4,0,null,95,[],96,[]],
-mx:[function(a,b,c){var z,y,x,w
-for(y=0;x=$.RM(),y<x.length;++y){x=x[y]
-w=a
-if(x==null?w==null:x===w)return H.d(b)+"..."+H.d(c)}z=P.p9("")
+mx:[function(a,b,c){var z,y,x
+for(y=0;x=$.RM(),y<x.length;++y)if(x[y]===a)return H.d(b)+"..."+H.d(c)
+z=P.p9("")
 try{$.RM().push(a)
 z.KF(b)
 z.We(a,", ")
@@ -3023,7 +3023,7 @@ try{P.Vr(a,z)}finally{$.xb().Rz(0,a)}y=P.p9("(")
 y.We(z,", ")
 y.KF(")")
 return y.vM},"call$1","zD",2,0,null,95,[]],
-Vr:[function(a,b){var z,y,x,w,v,u,t,s,r,q,p
+Vr:[function(a,b){var z,y,x,w,v,u,t,s,r,q
 z=a.gA(a)
 y=0
 x=0
@@ -3044,29 +3044,24 @@ y+=v.length+2}else{s=z.gl();++x
 for(;z.G();t=s,s=r){r=z.gl();++x
 if(x>100){while(!0){if(!(y>75&&x>3))break
 if(0>=b.length)return H.e(b,0)
-q=J.WB(J.q8(b.pop()),2)
-if(typeof q!=="number")return H.s(q)
-y-=q;--x}b.push("...")
+y-=b.pop().length+2;--x}b.push("...")
 return}}u=H.d(t)
 v=H.d(s)
 y+=v.length+u.length+4}}if(x>b.length+2){y+=5
-p="..."}else p=null
+q="..."}else q=null
 while(!0){if(!(y>80&&b.length>3))break
 if(0>=b.length)return H.e(b,0)
-q=J.WB(J.q8(b.pop()),2)
-if(typeof q!=="number")return H.s(q)
-y-=q
-if(p==null){y+=5
-p="..."}}if(p!=null)b.push(p)
+y-=b.pop().length+2
+if(q==null){y+=5
+q="..."}}if(q!=null)b.push(q)
 b.push(u)
 b.push(v)},"call$2","ZP",4,0,null,95,[],135,[]],
 L5:function(a,b,c,d,e){return H.VM(new P.YB(0,null,null,null,null,null,0),[d,e])},
 fM:function(a,b,c,d){return H.VM(new P.b6(0,null,null,null,null,null,0),[d])},
-vW:[function(a){var z,y,x,w,v
+vW:[function(a){var z,y,x,w
 z={}
-for(x=0;w=$.tw(),x<w.length;++x){w=w[x]
-v=a
-if(w==null?v==null:w===v)return"{...}"}y=P.p9("")
+for(x=0;w=$.tw(),x<w.length;++x)if(w[x]===a)return"{...}"
+y=P.p9("")
 try{$.tw().push(a)
 y.KF("{")
 z.a=!0
@@ -4827,7 +4822,7 @@ $isEH:true},
 iK:{
 "^":"Tp:155;a",
 call$1:[function(a){return J.bi(a,this.a)},"call$1",null,2,0,null,268,[],"call"],
-$isEH:true}}],["","file:///home/michael/Code/squatch-sighter/public/squatch_sighter/web/dart/map.dart",,A,{
+$isEH:true}}],["","file:///home/michael/Code/squatch-sighter/public/squatch_sighter/web/map/map.dart",,A,{
 "^":"",
 QL:[function(){var z,y,x
 z=document.querySelector("#map-canvas")
