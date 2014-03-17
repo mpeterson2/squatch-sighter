@@ -1,10 +1,9 @@
 library SquatchMap;
 
-import "dart:convert";
 import "dart:html" hide MouseEvent;
 import "package:google_maps/google_maps.dart";
 import 'info-window-content.dart';
-import 'sighting-marker.dart';
+import "sighting-marker.dart";
 
 class SquatchMap {
   final LatLng NORTH_AMERICA = new LatLng(40, -95);

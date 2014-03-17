@@ -1,7 +1,7 @@
 import "dart:convert";
 import "dart:html";
-import "classes/squatch-map.dart";
-import "classes/sighting-marker.dart";
+import "lib/squatch-map.dart";
+import "lib/sighting-marker.dart";
 
 
 void main() {

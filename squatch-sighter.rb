@@ -14,7 +14,7 @@ class SquatchSighter < Sinatra::Base
 
 	# Main index page.
 	get "/" do
-		redirect "/map.html"
+		send_file(settings.public_folder + "/map.html")
 	end
 
 	# Add a new Sighting.
