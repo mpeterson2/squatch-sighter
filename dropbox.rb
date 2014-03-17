@@ -9,9 +9,15 @@ class DropboxApi
 	@@SECRET = "5044j0uk99zm1vx"
 	@@ACCESS_TOKEN = "zgbrMY0CepAAAAAAAAAAAVdlx8oEVyTotf34CgAGk77fQTZ1CNNPozPrgZQeiyDG"
 
-	@@FOLDER_NAME = "images/"
+	@@FOLDER_NAME
 
 	def initialize
+		puts ENV["ENVIRONMENT"].methods.sort
+		if ENV["ENVIRONMENT"].nil?
+			@@FOLDER_NAME = "local/images/"
+		else
+			@@FOLDER_NAME = "heroku/images/"
+		end
 		@client = DropboxClient.new(@@ACCESS_TOKEN)
 	end
 
