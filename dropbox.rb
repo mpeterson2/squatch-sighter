@@ -12,7 +12,6 @@ class DropboxApi
 	@@FOLDER_NAME
 
 	def initialize
-		puts ENV["ENVIRONMENT"].methods.sort
 		if ENV["ENVIRONMENT"].nil?
 			@@FOLDER_NAME = "local/images/"
 		else

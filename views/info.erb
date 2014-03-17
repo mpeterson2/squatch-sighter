@@ -46,7 +46,11 @@
 			
 			<div id="description">
 				<p>
-					<%= @sighting.description.gsub!("\n", "</p><p>") %>
+					<% if @sighting.description.include?("\n") %>
+						<%= @sighting.description.gsub!("\n", "</p><p>") %>
+					<% else %>
+						<%= @sighting.description %>
+					<% end %>
 				</p>
 			</div>
 
