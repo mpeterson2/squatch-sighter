@@ -1,4 +1,9 @@
+#backBtn {
+	width: 25px;
+}
+
 #title {
+	margin-top: -25px;
 	text-align: center;
 }
 
