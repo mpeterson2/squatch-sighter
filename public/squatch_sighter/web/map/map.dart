@@ -1,5 +1,6 @@
 import "dart:convert";
 import "dart:html";
+import "../utilities.dart";
 import "lib/squatch-map.dart";
 import "lib/sighting-marker.dart";
 
@@ -24,15 +25,4 @@ void main() {
       map.showSighting(new SightingMarker.fromMap(sighting));
     }
   });
-}
-
-Map<String, String> getArgs() {
-  Map<String, String> map = new Map();
-  String queryString = window.location.search.replaceFirst("?", "");
-  for(String pair in queryString.split("&")) {
-    List<String> kv = pair.split("=");
-    map[kv[0]] = kv[1];
-  }
-  
-  return map;
 }

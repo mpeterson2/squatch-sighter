@@ -69,7 +69,6 @@ class SquatchMap {
   }
   
   void _shareSighting() {
-    
     FormData form = new FormData(IWContent.form);
     for(File f in IWContent.media) {
       form.appendBlob("media-${f.name}", f, f.name);
