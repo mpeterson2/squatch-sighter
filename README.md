@@ -7,7 +7,7 @@ squatch-sighter is a map where anybody can report a Sasquatch sighting. That's a
 
 # Development
 
-It is written in Ruby, using Sinatra, and Dart. The site is hosted on heroku at [http://squatch-sighter.herokuapp.com/](http://squatch-sighter.herokuapp.com/)
+It is written in Ruby, using Sinatra, and Dart. It uses the Google maps api and the Dropbox api. The site is hosted on heroku at [http://squatch-sighter.herokuapp.com/](http://squatch-sighter.herokuapp.com/)
 
 The Javascript is compiled from Dart, and had to be included in the git repository because of Heroku. The Dart sdk that I could find was out of date, and it wasn't compiling everything correctly.
 
