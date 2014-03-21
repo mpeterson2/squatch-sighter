@@ -32,7 +32,7 @@ DB.create_table? :comments do
     foreign_key :sighting_id
 end
 
-class Sighting < Sequel::Model; 
+class Sighting < Sequel::Model
     one_to_many :images
     one_to_many :comments
     plugin :json_serializer
